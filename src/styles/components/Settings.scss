@@ -1,0 +1,188 @@
+@use '../variables/variables' as *;
+
+.Settings {
+  display: flex;
+  font-size: 1.25rem;
+
+
+  .theme-toggler {
+    $size: 25px;
+    .theme-buttons {
+      cursor: pointer;
+      display: flex;
+      position: relative;
+      height: $size;
+      width: $size;
+      overflow: hidden;
+
+      .light-theme-btn,
+      .dark-theme-btn {
+        position: absolute;
+        top: $size;
+        transition: top 0.5s ease-in-out;
+        &.active {
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .settings-btn {
+    margin-left: 0.75rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: rotate(30deg);
+    }
+  }
+
+  .settings-menu {
+    position: absolute;
+    z-index: 10;
+    top: calc($header-height + 0.25rem);
+    right: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: var(--header-bg-color);
+    width: 260px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--secondary-text-color, rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(10px);
+
+    @include no-text-select;
+
+    transform: scale(0.95);
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: top right;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    
+    &.open {
+      transform: scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .measurement-systems {
+      padding: 0.5rem;
+
+      h4 {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        color: var(--primary-text-color);
+        opacity: 0.9;
+      }
+
+      .systems {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        
+        .system {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 4rem;
+          padding: 0.25rem 0.75rem;
+          height: 2.25rem;
+          border: 1px solid var(--border-color);
+          border-radius: 0.5rem;
+          transition: all 0.2s ease;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgba(var(--primary-text-color-rgb), 0.1);
+          }
+
+          &.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+          }
+        }
+      }
+    }
+
+    .additional-settings {
+      padding: 0.5rem;
+      border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+      margin-top: 0.5rem;
+      
+      h4 {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        color: var(--primary-text-color);
+        opacity: 0.9;
+      }
+      
+      .setting-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0.75rem 0;
+        
+        .setting-label {
+          font-size: 0.9rem;
+        }
+        
+        .toggle-switch {
+          position: relative;
+          width: 40px;
+          height: 22px;
+          
+          input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            
+            &:checked + .slider {
+              background-color: var(--accent-color);
+            }
+            
+            &:checked + .slider:before {
+              transform: translateX(18px);
+            }
+          }
+          
+          .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--secondary-text-color);
+            opacity: 0.5;
+            transition: .4s;
+            border-radius: 22px;
+            
+            &:before {
+              position: absolute;
+              content: "";
+              height: 16px;
+              width: 16px;
+              left: 3px;
+              bottom: 3px;
+              background-color: white;
+              transition: .4s;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      width: calc(100vw - 4rem);
+      right: 1rem;
+    }
+    
+    @media screen and (max-width: 480px) {
+      right: 0.5rem;
+      width: calc(100vw - 2rem);
+      padding: 0.5rem;
+    }
+  }
+}

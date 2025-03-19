@@ -1,0 +1,43 @@
+// header.scss
+@use '../variables/variables' as *;
+
+.Header {
+  background-color: var(--header-bg-color);
+  min-height: $header-height;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  .place {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    
+    i {
+      margin-right: 0.25rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    
+    .place {
+      font-size: 1.1rem;
+    }
+  }
+}

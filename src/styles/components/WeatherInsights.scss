@@ -1,0 +1,499 @@
+.WeatherInsights {
+    margin: 1.5rem 0;
+    
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-text-color);
+      text-align: center;
+      position: relative;
+      
+      &:after {
+        content: '';.WeatherInsights {
+    margin: 1.5rem 0;
+    
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-text-color);
+      text-align: center;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: var(--accent-color, #4a90e2);
+        border-radius: 3px;
+      }
+      
+      @media screen and (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+      
+      @media screen and (max-width: 480px) {
+        font-size: 1.35rem;
+      }
+    }
+    
+    .insights-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      
+      @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+      
+      @media screen and (max-width: 600px) {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+    }
+    
+    .insight-card {
+      background-color: var(--card-bg-color, rgba(255, 255, 255, 0.07));
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--secondary-text-color, rgba(255, 255, 255, 0.1));
+      height: 100%;
+      
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      }
+      
+      .insight-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        
+        i {
+          font-size: 1.25rem;
+          margin-right: 0.75rem;
+          color: var(--accent-color, #4a90e2);
+        }
+        
+        h3 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--primary-text-color);
+          
+          @media screen and (max-width: 480px) {
+            font-size: 1rem;
+          }
+        }
+      }
+      
+      .insight-content {
+        display: flex;
+        align-items: flex-start;
+        
+        .insight-icon {
+          font-size: 1.5rem;
+          margin-right: 1rem;
+          color: var(--accent-color, #4a90e2);
+          flex-shrink: 0;
+        }
+      }
+      
+      p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--primary-text-color);
+        opacity: 0.9;
+        
+        @media screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+      
+      .temp-value {
+        font-weight: 600;
+        margin-left: 0.5rem;
+      }
+      
+      .risk-indicator {
+        display: inline-block;
+        margin-right: 0.75rem;
+        margin-bottom: 0.5rem;
+        
+        .risk-level {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          border-radius: 1rem;
+          font-size: 0.85rem;
+          font-weight: 600;
+          
+          &.low {
+            background-color: #4caf50;
+            color: white;
+          }
+          
+          &.moderate {
+            background-color: #ff9800;
+            color: white;
+          }
+          
+          &.high {
+            background-color: #f44336;
+            color: white;
+          }
+          
+          &.very {
+            background-color: #9c27b0;
+            color: white;
+          }
+        }
+      }
+      
+      // Visual indicator for weather changes
+      &.insight-highlight {
+        border-left: 4px solid var(--accent-color, #4a90e2);
+      }
+      
+      @media screen and (max-width: 768px) {
+        padding: 1rem;
+      }
+    }
+    
+    // New feature: Collapsible cards on mobile
+    @media screen and (max-width: 480px) {
+      .insight-card.collapsible {
+        .insight-header {
+          cursor: pointer;
+          position: relative;
+          
+          &:after {
+            content: '\F282';
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            right: 0;
+            transition: transform 0.3s ease;
+          }
+        }
+        
+        &.collapsed {
+          .insight-header:after {
+            transform: rotate(180deg);
+          }
+          
+          .insight-content, p:not(.insight-header p) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+        position: absolute;
+        bottom: -0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: var(--accent-color, #4a90e2);
+        border-radius: 3px;
+      }
+    }
+    
+    .insights-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .insight-card {
+      background-color: var(--card-bg-color, rgba(255, 255, 255, 0.07));
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--secondary-text-color, rgba(255, 255, 255, 0.1));
+      
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      }
+      
+      .insight-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        
+        i {
+          font-size: 1.25rem;
+          margin-right: 0.75rem;
+          color: var(--accent-color, #4a90e2);
+        }
+        
+        h3 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--primary-text-color);
+        }
+      }
+      
+      .insight-content {
+        display: flex;
+        align-items: flex-start;
+        
+        .insight-icon {
+          font-size: 1.5rem;
+          margin-right: 1rem;
+          color: var(--accent-color, #4a90e2);
+        }
+      }
+      
+      p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--primary-text-color);
+        opacity: 0.9;
+      }
+      
+      .temp-value {
+        font-weight: 600;
+        margin-left: 0.5rem;
+      }
+      
+      .risk-indicator {
+        display: inline-block;
+        margin-right: 0.75rem;
+        
+        .risk-level {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          border-radius: 1rem;
+          font-size: 0.85rem;
+          font-weight: 600;
+          
+          &.low {
+            background-color: #4caf50;
+            color: white;
+          }
+          
+          &.moderate {
+            background-color: #ff9800;
+            color: white;
+          }
+          
+          &.high {
+            background-color: #f44336;
+            color: white;
+          }
+          
+          &.very {
+            background-color: #9c27b0;
+            color: white;
+          }
+        }
+      }
+    }
+    
+    @media screen and (max-width: 600px) {
+      .insights-container {
+        grid-template-columns: 1fr;
+      }
+    }.WeatherInsights {
+    margin: 1.5rem 0;
+    
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary-text-color);
+      text-align: center;
+      position: relative;
+      
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: var(--accent-color, #4a90e2);
+        border-radius: 3px;
+      }
+      
+      @media screen and (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+      
+      @media screen and (max-width: 480px) {
+        font-size: 1.35rem;
+      }
+    }
+    
+    .insights-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      
+      @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+      
+      @media screen and (max-width: 600px) {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+    }
+    
+    .insight-card {
+      background-color: var(--card-bg-color, rgba(255, 255, 255, 0.07));
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid var(--secondary-text-color, rgba(255, 255, 255, 0.1));
+      height: 100%;
+      
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      }
+      
+      .insight-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        
+        i {
+          font-size: 1.25rem;
+          margin-right: 0.75rem;
+          color: var(--accent-color, #4a90e2);
+        }
+        
+        h3 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--primary-text-color);
+          
+          @media screen and (max-width: 480px) {
+            font-size: 1rem;
+          }
+        }
+      }
+      
+      .insight-content {
+        display: flex;
+        align-items: flex-start;
+        
+        .insight-icon {
+          font-size: 1.5rem;
+          margin-right: 1rem;
+          color: var(--accent-color, #4a90e2);
+          flex-shrink: 0;
+        }
+      }
+      
+      p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--primary-text-color);
+        opacity: 0.9;
+        
+        @media screen and (max-width: 480px) {
+          font-size: 0.9rem;
+        }
+      }
+      
+      .temp-value {
+        font-weight: 600;
+        margin-left: 0.5rem;
+      }
+      
+      .risk-indicator {
+        display: inline-block;
+        margin-right: 0.75rem;
+        margin-bottom: 0.5rem;
+        
+        .risk-level {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          border-radius: 1rem;
+          font-size: 0.85rem;
+          font-weight: 600;
+          
+          &.low {
+            background-color: #4caf50;
+            color: white;
+          }
+          
+          &.moderate {
+            background-color: #ff9800;
+            color: white;
+          }
+          
+          &.high {
+            background-color: #f44336;
+            color: white;
+          }
+          
+          &.very {
+            background-color: #9c27b0;
+            color: white;
+          }
+        }
+      }
+      
+      // Visual indicator for weather changes
+      &.insight-highlight {
+        border-left: 4px solid var(--accent-color, #4a90e2);
+      }
+      
+      @media screen and (max-width: 768px) {
+        padding: 1rem;
+      }
+    }
+    
+    // New feature: Collapsible cards on mobile
+    @media screen and (max-width: 480px) {
+      .insight-card.collapsible {
+        .insight-header {
+          cursor: pointer;
+          position: relative;
+          
+          &:after {
+            content: '\F282';
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            right: 0;
+            transition: transform 0.3s ease;
+          }
+        }
+        
+        &.collapsed {
+          .insight-header:after {
+            transform: rotate(180deg);
+          }
+          
+          .insight-content, p:not(.insight-header p) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  }

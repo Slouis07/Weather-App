@@ -1,0 +1,391 @@
+@use "../variables/variables" as *;
+
+.WeatherImpactPlanner {
+  width: 100%;
+  max-width: 900px; 
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: var(--card-bg-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+
+  .activity-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch; // Smooth scrolling for iOS
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(var(--primary-color-rgb), 0.5);
+      border-radius: 4px;
+    }
+
+    .activity-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.75rem;
+      border-radius: 8px;
+      background-color: var(--input-bg-color);
+      min-width: 80px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: rgba(var(--primary-color-rgb), 0.1);
+      }
+
+      &.selected {
+        background-color: rgba(var(--primary-color-rgb), 0.2);
+        border: 1px solid rgba(var(--primary-color-rgb), 0.5);
+      }
+
+      i {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+      }
+
+      span {
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .forecast-impact {
+    margin-bottom: 1.5rem;
+
+    .days-container {
+      position: relative;
+      overflow: hidden;
+      
+      .scroll-indicator {
+        display: none; // Hidden by default, shown on mobile
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--text-color);
+        opacity: 0.5;
+        font-size: 0.7rem;
+        text-align: center;
+        width: 100%;
+      }
+    }
+
+    .day-scores {
+      display: flex;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; // Smooth scrolling for iOS
+      
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(var(--primary-color-rgb), 0.5);
+        border-radius: 4px;
+      }
+
+      .day-score {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 80px;
+        flex-shrink: 0; // Prevent shrinking
+
+        .day-label {
+          font-weight: 500;
+          margin-bottom: 0.5rem;
+        }
+
+        .score-circle {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+          font-size: 1.2rem;
+
+          &.excellent {
+            background-color: rgba(46, 204, 113, 0.2);
+            border: 2px solid rgba(46, 204, 113, 0.8);
+            color: #2ecc71;
+          }
+
+          &.good {
+            background-color: rgba(52, 152, 219, 0.2);
+            border: 2px solid rgba(52, 152, 219, 0.8);
+            color: #3498db;
+          }
+
+          &.fair {
+            background-color: rgba(241, 196, 15, 0.2);
+            border: 2px solid rgba(241, 196, 15, 0.8);
+            color: #f39c12;
+          }
+
+          &.poor {
+            background-color: rgba(231, 76, 60, 0.2);
+            border: 2px solid rgba(231, 76, 60, 0.8);
+            color: #e74c3c;
+          }
+        }
+
+        .score-label {
+          font-size: 0.8rem;
+          text-transform: capitalize;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  .optimal-time {
+    margin-bottom: 1.5rem;
+
+    .time-recommendation {
+      .recommendation-card {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background-color: var(--input-bg-color);
+        border-radius: 10px;
+
+        .recommendation-icon {
+          margin-right: 1rem;
+          font-size: 1.8rem;
+          color: var(--primary-color);
+        }
+
+        .recommendation-details {
+          .recommendation-time {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+          }
+
+          .recommendation-score {
+            .score-badge {
+              padding: 0.25rem 0.75rem;
+              border-radius: 1rem;
+              font-size: 0.9rem;
+              font-weight: 500;
+
+              &.excellent {
+                background-color: rgba(46, 204, 113, 0.2);
+                color: #2ecc71;
+              }
+
+              &.good {
+                background-color: rgba(52, 152, 219, 0.2);
+                color: #3498db;
+              }
+
+              &.fair {
+                background-color: rgba(241, 196, 15, 0.2);
+                color: #f39c12;
+              }
+
+              &.poor {
+                background-color: rgba(231, 76, 60, 0.2);
+                color: #e74c3c;
+              }
+            }
+          }
+        }
+      }
+
+      .no-recommendation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+        background-color: var(--input-bg-color);
+        border-radius: 10px;
+
+        i {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          opacity: 0.7;
+        }
+
+        p {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  .tips-section {
+    .tips-container {
+      .general-tip,
+      .tip {
+        display: flex;
+        align-items: flex-start;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        background-color: var(--input-bg-color);
+        border-radius: 8px;
+
+        i {
+          margin-right: 0.75rem;
+          margin-top: 0.2rem;
+          font-size: 1.1rem;
+          color: var(--primary-color);
+        }
+
+        p {
+          margin: 0;
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .WeatherImpactPlanner {
+    padding: 0.75rem;
+
+    .activity-selector {
+      .activity-icon {
+        min-width: 70px;
+        padding: 0.5rem;
+      }
+    }
+    
+    .forecast-impact {
+      .days-container {
+        .scroll-indicator {
+          display: block; // Show scroll indicator on mobile
+        }
+      }
+      
+      .day-scores {
+        justify-content: flex-start;
+        padding-bottom: 15px; // Space for the scroll indicator
+        
+        .day-score {
+          min-width: 70px;
+          
+          .score-circle {
+            width: 50px;
+            height: 50px;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 675px) {
+  .WeatherImpactPlanner {
+    padding: 0.5rem;
+    
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    
+    h3 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .activity-selector {
+      gap: 0.3rem;
+      
+      .activity-icon {
+        min-width: 60px;
+        padding: 0.4rem;
+        
+        i {
+          font-size: 1.2rem;
+          margin-bottom: 0.3rem;
+        }
+        
+        span {
+          font-size: 0.7rem;
+        }
+      }
+    }
+    
+    .forecast-impact .day-scores {
+      gap: 0.5rem;
+      
+      .day-score {
+        min-width: 60px;
+        
+        .score-circle {
+          width: 45px;
+          height: 45px;
+          font-size: 0.9rem;
+        }
+        
+        .day-label, .score-label {
+          font-size: 0.7rem;
+        }
+      }
+    }
+    
+    .optimal-time .time-recommendation .recommendation-card {
+      padding: 0.75rem;
+      
+      .recommendation-icon {
+        font-size: 1.4rem;
+        margin-right: 0.75rem;
+      }
+      
+      .recommendation-details .recommendation-time {
+        font-size: 1rem;
+      }
+    }
+    
+    .tips-section .tips-container .general-tip, 
+    .tips-section .tips-container .tip {
+      padding: 0.5rem;
+      
+      i {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+      }
+      
+      p {
+        font-size: 0.85rem;
+      }
+    }
+  }
+}

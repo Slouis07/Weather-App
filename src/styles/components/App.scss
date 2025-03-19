@@ -1,0 +1,13 @@
+@use '../base/reset';
+@use '../themes/themes';
+
+.App-dark,
+.App-light {
+  background-color: var(--main-bg-color);
+  color: var(--primary-text-color);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Roboto', 'Open Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding-bottom: 2rem;
+}
